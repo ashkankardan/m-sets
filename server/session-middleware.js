@@ -6,7 +6,9 @@ const FileStore = sessonFileStore(expressSession);
 
 const sessionMiddleware = expressSession({
   cookie: {
-    sameSite: true
+    sameSite: true,
+    httpOnly: process.env.NODE_ENV === 'production',
+    maxAge: parseInt(process.env.SESSION_EXPIRY, 10)
   },
   resave: false,
   rolling: true,
