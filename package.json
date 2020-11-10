@@ -4,7 +4,14 @@
   "description": "A web application for musician to generate sounds, add effects and share them.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm-run-all --silent --parallel dev:*",
+    "dev:client": "webpack-dev-server",
+    "dev:server": "nodemon server/index.js",
+    "db:import": "source .env && psql $DATABASE_URL < database/dump.sql",
+    "db:export": "source .env && pg_dump -c --if-exists -O $DATABASE_URL > database/dump.sql",
+    "build": "webpack --mode=production",
+    "start": "NODE_ENV=production node server/index.js"
   },
   "repository": {
     "type": "git",
