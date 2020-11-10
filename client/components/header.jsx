@@ -10,7 +10,7 @@ export default class Header extends React.Component {
     return (
       <header className="header">
         <h1 className="roboto">M|S</h1>
-        <i className="fas fa-home"></i>
+        <i className="fas fa-home icon-red"></i>
         <div className="circle"></div>
       </header>
     );

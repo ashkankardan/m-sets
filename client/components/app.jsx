@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './header';
+import Footer from './footer';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,10 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Header />
+      <div>
+        <Header />
+        <Footer />
+      </div>
     );
   }
 }
