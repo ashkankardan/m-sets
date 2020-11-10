@@ -42,6 +42,30 @@ app.get('/api/artists', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
+app.get('/api/sets:setName', (req, res, next) => {
+  const setName = req.body.setName;
+
+  const sql = `
+    select "setId", "setName", "artistName", "image"
+    from "sets"
+    join "artists" using ("artistId")
+    where "setName" = $1
+  `;
+
+  const values = [setName];
+
+  db.query(sql, values)
+    .then(result => {
+      if (result.rows[0]) {
+        res.status(200).json(result.rows[0]);
+      } else {
+        next(new ClientError(`cannot find setName ${setName}`, 404));
+      }
+    })
+    .catch(err => next(err));
+
+});
+
 // ----------
 
 app.get('/api/health-check', (req, res, next) => {
