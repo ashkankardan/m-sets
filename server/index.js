@@ -90,6 +90,31 @@ app.get('/api/artists:artistName', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/accounts:artistId', (req, res, next) => {
+  const artistId = req.body.artistId;
+
+  const sql = `
+    select "artistId", "artistName", "image", "setId", "setName"
+    from "artists"
+    join "sets" using ("artistId")
+    where "artistId" = $1
+  `;
+
+  const values = [artistId];
+
+  db.query(sql, values)
+    .then(result => {
+      if (result.rows[0]) {
+        res.status(200).json(result.rows);
+      } else {
+        next(
+          new ClientError(`cannot find artistId ${artistId}`, 404)
+        );
+      }
+    })
+    .catch(err => next(err));
+});
+
 // ----------
 
 app.get('/api/health-check', (req, res, next) => {
