@@ -7,7 +7,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       message: null,
-      isLoading: true
+      isLoading: true,
+      view: 'home'
     };
   }
 
@@ -20,9 +21,19 @@ export default class App extends React.Component {
   }
 
   render() {
+    let viewElement;
+    if (this.state.isLoading) {
+      viewElement = <h1>Testing connections...</h1>;
+    } else if (!this.state.isLoading) {
+      viewElement = <div>
+        <h1>It works</h1>
+        <h1>{this.state.message.toUpperCase()}</h1>
+      </div>;
+    }
     return (
       <div>
         <Header />
+        {viewElement}
         <Footer />
       </div>
     );

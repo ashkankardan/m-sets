@@ -4,6 +4,9 @@
 body {
   background-color: black;
 }
+h1 {
+  color: white;
+}
 .header {
   padding-top: 20px;
   padding-left: 15px;
