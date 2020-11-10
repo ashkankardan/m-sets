@@ -65,7 +65,8 @@ SET default_with_oids = false;
 
 CREATE TABLE public.artists (
     "artistId" integer NOT NULL,
-    "artistName" text NOT NULL
+    "artistName" text NOT NULL,
+    image text NOT NULL
 );
 
 
@@ -157,7 +158,8 @@ ALTER TABLE ONLY public.sets ALTER COLUMN "setId" SET DEFAULT nextval('public."s
 -- Data for Name: artists; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.artists ("artistId", "artistName") FROM stdin;
+COPY public.artists ("artistId", "artistName", image) FROM stdin;
+1	Ashkan	./images/avatar/ashkan.png
 \.
 
 
@@ -166,6 +168,7 @@ COPY public.artists ("artistId", "artistName") FROM stdin;
 --
 
 COPY public.sets ("setId", "setName", "artistId", osc1, "waveForm1", frq1, lp1, hp1, delay1, reverb1, distortion1, gain1, osc2, "waveForm2", frq2, lp2, hp2, delay2, reverb2, distortion2, gain2, output) FROM stdin;
+1	Mynoise	1	t	sine	440	t	t	t	t	t	10	t	sine	440	f	f	f	f	f	5	5
 \.
 
 
@@ -173,14 +176,14 @@ COPY public.sets ("setId", "setName", "artistId", osc1, "waveForm1", frq1, lp1, 
 -- Name: artists_artistId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."artists_artistId_seq"', 1, false);
+SELECT pg_catalog.setval('public."artists_artistId_seq"', 1, true);
 
 
 --
 -- Name: sets_setId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."sets_setId_seq"', 1, false);
+SELECT pg_catalog.setval('public."sets_setId_seq"', 1, true);
 
 
 --
