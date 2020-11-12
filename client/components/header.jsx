@@ -1,4 +1,5 @@
 import React from 'react';
+import AccountSelect from './account-select';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class Header extends React.Component {
         <header className="header">
           <h1>M|S</h1>
           <i className="fas fa-home icon-red"></i>
-          <div className="circle"></div>
+          <AccountSelect getAccount={this.props.getAccount}/>
         </header>
       );
     } else if (this.props.stateView === 'search') {
@@ -20,7 +21,7 @@ export default class Header extends React.Component {
         <header className="header">
           <h1>M|S</h1>
           <i className="fas fa-search icon-red"></i>
-          <div className="circle"></div>
+          <AccountSelect getAccount={this.props.getAccount}/>
         </header>
       );
     } else if (this.props.stateView === 'modules') {
@@ -28,7 +29,15 @@ export default class Header extends React.Component {
         <header className="header">
           <h1>M|S</h1>
           <i className="fas fa-sitemap icon-red"></i>
-          <div className="circle"></div>
+          <AccountSelect getAccount={this.props.getAccount}/>
+        </header>
+      );
+    } else if (this.props.stateView === 'artist') {
+      return (
+        <header className="header">
+          <h1>M|S</h1>
+          <i className="fas fa-search icon-red"></i>
+          <AccountSelect getAccount={this.props.getAccount}/>
         </header>
       );
     }
