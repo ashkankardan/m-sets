@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.12 (Ubuntu 10.12-0ubuntu0.18.04.1)
--- Dumped by pg_dump version 10.12 (Ubuntu 10.12-0ubuntu0.18.04.1)
+-- Dumped from database version 10.14 (Ubuntu 10.14-0ubuntu0.18.04.1)
+-- Dumped by pg_dump version 10.14 (Ubuntu 10.14-0ubuntu0.18.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -159,7 +159,7 @@ ALTER TABLE ONLY public.sets ALTER COLUMN "setId" SET DEFAULT nextval('public."s
 --
 
 COPY public.artists ("artistId", "artistName", image) FROM stdin;
-1	Ashkan	./images/avatar/ashkan.png
+1	Ashkan	./images/avatars/ashkan.png
 \.
 
 

@@ -1,7 +1,11 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer';
+
 import Modules from './modules';
+import SetsList from './sets-list';
+import ArtistsList from './artists-list';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,15 +30,26 @@ export default class App extends React.Component {
     let viewElement;
     if (this.state.isLoading) {
       viewElement = <h1>Testing connections...</h1>;
+
     } else if (this.state.view === 'modules') {
       viewElement = <Modules />;
+
+    } else if (this.state.view === 'home') {
+      return (
+        <div className="container">
+          <Header />
+          <SetsList />
+          <ArtistsList />
+          <Footer />
+        </div>
+      );
+    } else {
+      return (
+        <div className="container">
+          <Header />
+          <Footer />
+        </div>
+      );
     }
-    return (
-      <div>
-        <Header />
-        {viewElement}
-        <Footer />
-      </div>
-    );
   }
 }

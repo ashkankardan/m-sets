@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.get('/api/sets', (req, res, next) => {
   const sql = `
-    select "setId", "setName", "artistName"
+    select "setId", "setName", "artistName", "image"
     from "sets"
     join "artists" using ("artistId")
   `;
