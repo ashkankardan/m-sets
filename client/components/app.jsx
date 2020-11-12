@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer';
+import Modules from './modules';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -8,8 +9,9 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: 'home'
+      view: 'modules'
     };
+
   }
 
   componentDidMount() {
@@ -24,11 +26,8 @@ export default class App extends React.Component {
     let viewElement;
     if (this.state.isLoading) {
       viewElement = <h1>Testing connections...</h1>;
-    } else if (!this.state.isLoading) {
-      viewElement = <div>
-        <h1>It works</h1>
-        <h1>{this.state.message.toUpperCase()}</h1>
-      </div>;
+    } else if (this.state.view === 'modules') {
+      viewElement = <Modules />;
     }
     return (
       <div>
