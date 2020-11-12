@@ -27,12 +27,12 @@ export default class SetsList extends React.Component {
   render() {
     const array = this.state.setArray;
     return (
-      <div className="container">
-        <h1 className="large-font roboto">Module|Sets</h1>
+      <div className="browse">
+        <h1 className="large-font">Module|Sets</h1>
         {
           array.map(item => {
             return (
-              <SetItem className="flex browse" key={item.setId} set={item}/>
+              <SetItem className="flex" key={item.setId} set={item}/>
             );
           })
         }
