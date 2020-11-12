@@ -23,6 +23,14 @@ export default class Header extends React.Component {
           <div className="circle"></div>
         </header>
       );
+    } else if (this.props.stateView === 'modules') {
+      return (
+        <header className="header">
+          <h1>M|S</h1>
+          <i className="fas fa-sitemap icon-red"></i>
+          <div className="circle"></div>
+        </header>
+      );
     }
   }
 }

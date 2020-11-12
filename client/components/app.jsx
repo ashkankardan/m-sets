@@ -8,14 +8,13 @@ import ArtistsList from './artists-list';
 import SearchSet from './search-set';
 import SearchArtist from './search-artist';
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: null,
       isLoading: true,
-      view: 'modules'
+      view: 'home'
     };
     this.divSetView = this.divSetView.bind(this);
     this.iconSetView = this.iconSetView.bind(this);
@@ -29,7 +28,6 @@ export default class App extends React.Component {
 
   iconSetView() {
 
-
   }
 
   componentDidMount() {
@@ -41,31 +39,25 @@ export default class App extends React.Component {
   }
 
   render() {
+
     let viewElement;
-    
-    if (this.state.isLoading) {
-      viewElement = <h1>Testing connections...</h1>;
 
-
-    } else if (this.state.view === 'modules') {
-      viewElement = <Modules />;
-
+    if (this.state.view === 'modules') {
+      viewElement = <div><Modules /></div>;
     } else if (this.state.view === 'home') {
-      
-      viewElement = <div className="container">
-          <Header stateView={this.state.view} />
-          <SetsList />
-          <ArtistsList />
-          <Footer stateView={this.state.view} divSetView={this.divSetView} iconSetView={this.iconSetView} />
-        </div>;
-    
+      viewElement = <div><SetsList /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
-      viewElement = <div className="container">
-          <Header stateView={this.state.view} />
-          <SearchSet />
-          <SearchArtist />
-          <Footer stateView={this.state.view} divSetView={this.divSetView} iconSetView={this.iconSetView} />
-        </div>;
+      viewElement = <div><SearchSet /><SearchArtist /></div>;
     }
+
+    return (
+      this.state.isLoading
+        ? <h1>Testing connections...</h1>
+        : <div className="container">
+          <Header stateView={this.state.view} />
+          {viewElement}
+          <Footer stateView={this.state.view} divSetView={this.divSetView} iconSetView={this.iconSetView} />
+        </div>
+    );
   }
 }
