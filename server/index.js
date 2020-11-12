@@ -66,7 +66,7 @@ app.get('/api/sets:setName', (req, res, next) => {
 
 });
 
-app.get('/api/artists:artistName', (req, res, next) => {
+app.get('/api/artists', (req, res, next) => {
   const artistName = req.body.artistName;
   const artistNameLowercase = artistName.toLowerCase();
 

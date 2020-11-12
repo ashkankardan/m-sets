@@ -27,7 +27,7 @@ export default class ArtistsList extends React.Component {
   render() {
     const array = this.state.setArray;
     return (
-      <div className="container">
+      <div className="browse">
         <h1 className="large-font">Artists</h1>
         {
           array.map(item => {

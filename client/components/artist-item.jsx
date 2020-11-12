@@ -10,7 +10,7 @@ export default class ArtistItem extends React.Component {
     return (
       <div className="browse-item">
         <img className="avatar" src={this.props.set.image} alt={this.props.set.setName} />
-        <p>{this.props.set.artistName}</p>
+        <p className="artist-name">{this.props.set.artistName}</p>
       </div>
     );
   }
