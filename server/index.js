@@ -90,8 +90,13 @@ app.get('/api/artists', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/accounts:artistId', (req, res, next) => {
-  const artistId = req.body.artistId;
+app.get('/api/accounts', (req, res, next) => {
+  const artistId = parseInt(req.body.artistId, 10);
+  if (!Number.isInteger(artistId) || artistId <= 0) {
+    res.status(400).json({
+      error: '"artistId" must be a positive integer'
+    });
+  }
 
   const sql = `
     select "artistId", "artistName", "image", "setId", "setName"

@@ -1,10 +1,13 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer';
+
+import Modules from './modules';
 import SetsList from './sets-list';
 import ArtistsList from './artists-list';
 import SearchSet from './search-set';
 import SearchArtist from './search-artist';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,7 +15,7 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: 'home'
+      view: 'modules'
     };
     this.divSetView = this.divSetView.bind(this);
     this.iconSetView = this.iconSetView.bind(this);
@@ -25,6 +28,8 @@ export default class App extends React.Component {
   }
 
   iconSetView() {
+
+
   }
 
   componentDidMount() {
@@ -37,27 +42,30 @@ export default class App extends React.Component {
 
   render() {
     let viewElement;
+    
     if (this.state.isLoading) {
       viewElement = <h1>Testing connections...</h1>;
-      return viewElement;
+
+
+    } else if (this.state.view === 'modules') {
+      viewElement = <Modules />;
+
     } else if (this.state.view === 'home') {
-      return (
-        <div className="container">
+      
+      viewElement = <div className="container">
           <Header stateView={this.state.view} />
           <SetsList />
           <ArtistsList />
           <Footer stateView={this.state.view} divSetView={this.divSetView} iconSetView={this.iconSetView} />
-        </div>
-      );
+        </div>;
+    
     } else if (this.state.view === 'search') {
-      return (
-        <div className="container">
+      viewElement = <div className="container">
           <Header stateView={this.state.view} />
           <SearchSet />
           <SearchArtist />
           <Footer stateView={this.state.view} divSetView={this.divSetView} iconSetView={this.iconSetView} />
-        </div>
-      );
+        </div>;
     }
   }
 }
