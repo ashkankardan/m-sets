@@ -1,8 +1,11 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer';
+
+import Modules from './modules';
 import SetsList from './sets-list';
 import ArtistsList from './artists-list';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,8 +13,9 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: 'home'
+      view: 'modules'
     };
+
   }
 
   componentDidMount() {
@@ -26,13 +30,11 @@ export default class App extends React.Component {
     let viewElement;
     if (this.state.isLoading) {
       viewElement = <h1>Testing connections...</h1>;
-      return viewElement;
-    } else if (!this.state.isLoading) {
-      viewElement = <div className="center">
-        <h1>{this.state.message.toUpperCase()}</h1>
-      </div>;
-    }
-    if (this.state.view === 'home') {
+
+    } else if (this.state.view === 'modules') {
+      viewElement = <Modules />;
+
+    } else if (this.state.view === 'home') {
       return (
         <div className="container">
           <Header />
