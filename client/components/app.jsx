@@ -5,8 +5,9 @@ import Footer from './footer';
 import Modules from './modules';
 import SetsList from './sets-list';
 import ArtistsList from './artists-list';
-import SearchSet from './search-set';
-import SearchArtist from './search-artist';
+// import SearchSet from './search-set';
+// import SearchArtist from './search-artist';
+import Search from './search';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: 'home'
+      view: 'search'
     };
     this.divSetView = this.divSetView.bind(this);
     this.iconSetView = this.iconSetView.bind(this);
@@ -47,7 +48,8 @@ export default class App extends React.Component {
     } else if (this.state.view === 'home') {
       viewElement = <div><SetsList /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
-      viewElement = <div><SearchSet /><SearchArtist /></div>;
+      // viewElement = <div><SearchSet /><SearchArtist /></div>;
+      viewElement = <div><Search /></div>;
     }
 
     return (

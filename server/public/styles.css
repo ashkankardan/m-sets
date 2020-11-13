@@ -3,13 +3,13 @@
 
   margin: 0;
   padding: 0;
-
 }
 body {
   font-family: roboto, sans-serif;
   background-color: black;
 }
-h1, p {
+h1,
+p {
   color: white;
 }
 .container {
@@ -91,45 +91,52 @@ h1, p {
   height: 50px;
 }
 
-.gray:hover, .red:hover {
+.gray:hover,
+.red:hover {
   cursor: pointer;
 }
-
 
 .modules {
   padding-top: 33px;
   width: 80%;
   margin: auto;
-
 }
 
-.osc, .osc1onoff {
+.osc,
+.osc1onoff {
   width: 50%;
   height: 40px;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-.waveForm, .frq {
+.waveForm,
+.frq {
   background-color: gray;
   text-align: center;
 }
 
-.waveForm, .frq, .lp, .hp {
+.waveForm,
+.frq,
+.lp,
+.hp {
   width: 25%;
   height: 40px;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-.delay, .reverb, .distortion {
+.delay,
+.reverb,
+.distortion {
   width: calc(100% / 3);
   height: 40px;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-.output, .gain {
+.output,
+.gain {
   width: 100%;
   height: 40px;
 }
@@ -154,8 +161,19 @@ h1, p {
   background-color: #830000;
 }
 
-.osc1onoff:hover, .waveForm:hover, .frq:hover, .delay:hover, .reverb:hover, .distortion:hover, .lp:hover, .hp:hover, .gain:hover, .output:hover {
+.search-btn:hover,
+.osc1onoff:hover,
+.waveForm:hover,
+.frq:hover,
+.delay:hover,
+.reverb:hover,
+.distortion:hover,
+.lp:hover,
+.hp:hover,
+.gain:hover,
+.output:hover {
   cursor: pointer;
+}
 
 .large-font {
   font-size: 50px;
@@ -171,6 +189,7 @@ h1, p {
   text-align: center;
   width: 80%;
 }
+
 .browse-item {
   width: 20%;
   padding-left: 5px;
@@ -178,11 +197,35 @@ h1, p {
 }
 .avatar {
   width: 80%;
-
 }
+
 .set-name {
   margin-bottom: 5px;
 }
+
 .artist-name {
   margin-top: 0;
+}
+
+.search-result {
+  margin-top: 20px;
+  margin: 20px auto;
+  width: 75%;
+}
+
+.srch-res-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.srch-avatar {
+  width: 30%;
+}
+
+.srch-res-info {
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-left: 10px;
 }
