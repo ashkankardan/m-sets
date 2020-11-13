@@ -93,22 +93,18 @@ app.get('/api/artists/:artistName', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/accounts', (req, res, next) => {
-  const artistId = parseInt(req.body.artistId, 10);
-  if (!Number.isInteger(artistId) || artistId <= 0) {
-    res.status(400).json({
-      error: '"artistId" must be a positive integer'
-    });
-  }
+app.get('/api/accounts/:account', (req, res, next) => {
+  const account = req.params.account;
+  const accountLowercase = account.toLowerCase();
 
   const sql = `
     select "artistId", "artistName", "image", "setId", "setName"
     from "artists"
     join "sets" using ("artistId")
-    where "artistId" = $1
+    where "artistName" = $1
   `;
 
-  const values = [artistId];
+  const values = [accountLowercase];
 
   db.query(sql, values)
     .then(result => {
@@ -116,12 +112,36 @@ app.get('/api/accounts', (req, res, next) => {
         res.status(200).json(result.rows);
       } else {
         next(
-          new ClientError(`cannot find artistId ${artistId}`, 404)
+          new ClientError(`cannot find artistName ${accountLowercase}`, 404)
         );
       }
     })
     .catch(err => next(err));
 });
+
+
+app.get("/api/artists/:artistName", (req, res, next) => {
+  const artistName = req.params.artistName;
+  const artistNameLowercase = artistName.toLowerCase();
+  const sql = `
+    select "artistId", "artistName", "image"
+    from "artists"
+    where "artistName" = $1
+  `;
+  const values = [artistNameLowercase];
+  db.query(sql, values)
+    .then((result) => {
+      if (result) {
+        res.status(200).json(result.rows);
+      } else {
+        next(
+          new ClientError(`cannot find artistName ${artistNameLowercase}`, 404)
+        );
+      }
+    })
+    .catch((err) => next(err));
+});
+
 
 app.post('/api/saveset', (req, res, next) => {
   const artistName = req.body.artistName;
@@ -152,6 +172,7 @@ app.post('/api/saveset', (req, res, next) => {
     where "artistName" = $1
   `;
 
+
   const values = [artistName];
 
   db.query(sql, values)
@@ -178,8 +199,10 @@ app.post('/api/saveset', (req, res, next) => {
       }
     })
     .catch(err => next(err));
-
 });
+
+
+
 
 // ----------
 
