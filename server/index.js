@@ -42,8 +42,9 @@ app.get('/api/artists', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
-app.get('/api/sets:setName', (req, res, next) => {
-  const setName = req.body.setName;
+app.get('/api/sets/:setName', (req, res, next) => {
+  const setName = req.params.setName;
+  const setNameLowercase = setName.toLowerCase();
 
   const sql = `
     select "setId", "setName", "artistName", "image"
@@ -52,7 +53,7 @@ app.get('/api/sets:setName', (req, res, next) => {
     where "setName" = $1
   `;
 
-  const values = [setName];
+  const values = [setNameLowercase];
 
   db.query(sql, values)
     .then(result => {
@@ -66,8 +67,8 @@ app.get('/api/sets:setName', (req, res, next) => {
 
 });
 
-app.get('/api/artists', (req, res, next) => {
-  const artistName = req.body.artistName;
+app.get('/api/artists/:artistName', (req, res, next) => {
+  const artistName = req.params.artistName;
   const artistNameLowercase = artistName.toLowerCase();
 
   const sql = `
@@ -84,7 +85,9 @@ app.get('/api/artists', (req, res, next) => {
       if (result.rows[0]) {
         res.status(200).json(result.rows);
       } else {
-        next(new ClientError(`cannot find artistName ${artistNameLowercase}`, 404));
+        next(
+          new ClientError(`cannot find artistName ${artistNameLowercase}`, 404)
+        );
       }
     })
     .catch(err => next(err));

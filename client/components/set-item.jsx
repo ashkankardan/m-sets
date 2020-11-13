@@ -9,9 +9,9 @@ export default class SetItem extends React.Component {
   render() {
     return (
       <div className="browse-item">
-        <p className="set-name">{this.props.set.setName}</p>
         <img className="avatar" src={this.props.set.image} alt={this.props.set.setName} />
         <p className="artist-name">{this.props.set.artistName}</p>
+        <p className="set-name">{this.props.set.setName}</p>
       </div>
     );
   }

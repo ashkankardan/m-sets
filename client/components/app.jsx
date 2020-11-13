@@ -5,10 +5,11 @@ import Footer from './footer';
 import Modules from './modules';
 import SetsList from './sets-list';
 import ArtistsList from './artists-list';
-import SearchSet from './search-set';
-import SearchArtist from './search-artist';
+
 import ArtistView from './artist-view';
 import LogInView from './log-in-view';
+import Search from './search';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,8 +18,8 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: 'home',
-      sets: '',
       currentUser: null
+
     };
     this.divSetView = this.divSetView.bind(this);
     this.iconSetView = this.iconSetView.bind(this);
@@ -80,7 +81,8 @@ export default class App extends React.Component {
     } else if (this.state.view === 'home') {
       viewElement = <div><SetsList /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
-      viewElement = <div><SearchSet /><SearchArtist /></div>;
+
+      viewElement = <div><Search /></div>;
     } else if (this.state.view === 'artist') {
       viewElement = <div><ArtistView account={this.state.currentUser}/></div>;
     } else if (this.state.view === 'login') {
