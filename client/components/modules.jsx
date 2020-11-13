@@ -5,6 +5,8 @@ export default class Modules extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      artistName: '',
+      setName: '',
       osc1: false,
       waveForm1: 'sine',
       frq1: 180,
