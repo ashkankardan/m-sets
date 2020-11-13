@@ -8,6 +8,7 @@ import ArtistsList from './artists-list';
 import SearchSet from './search-set';
 import SearchArtist from './search-artist';
 import ArtistView from './artist-view';
+import LogInView from './log-in-view';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,11 +17,14 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: 'home',
-      sets: ''
+      sets: '',
+      currentUser: null
     };
     this.divSetView = this.divSetView.bind(this);
     this.iconSetView = this.iconSetView.bind(this);
     this.getAccount = this.getAccount.bind(this);
+    this.logInView = this.logInView.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
 
   divSetView(view) {
@@ -33,6 +37,19 @@ export default class App extends React.Component {
 
   }
 
+  logInView() {
+    this.setState({
+      view: 'login'
+    });
+  }
+
+  setUser(artistObject) {
+    this.setState({
+      currentUser: artistObject
+    });
+  }
+
+  // need to double check
   getAccount(event) {
     const account = event.target.value;
     fetch(`/api/accounts/${account}`)
@@ -45,6 +62,7 @@ export default class App extends React.Component {
       });
   }
 
+  // --------
   componentDidMount() {
     fetch('/api/health-check')
       .then(res => res.json())
@@ -58,20 +76,22 @@ export default class App extends React.Component {
     let viewElement;
 
     if (this.state.view === 'modules') {
-      viewElement = <div><Modules /></div>;
+      viewElement = <div><Modules currentUser={this.state.currentUser}/></div>;
     } else if (this.state.view === 'home') {
       viewElement = <div><SetsList /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
       viewElement = <div><SearchSet /><SearchArtist /></div>;
     } else if (this.state.view === 'artist') {
-      viewElement = <div><ArtistView account={this.state.sets}/></div>;
+      viewElement = <div><ArtistView account={this.state.currentUser}/></div>;
+    } else if (this.state.view === 'login') {
+      viewElement = <div><LogInView setView={this.divSetView} setUser={this.setUser} /></div>;
     }
 
     return (
       this.state.isLoading
         ? <h1>Testing connections...</h1>
         : <div className="container">
-          <Header stateView={this.state.view} getAccount={this.getAccount}/>
+          <Header stateView={this.state.view} logInView={this.logInView} getAccount={this.getAccount}/>
           {viewElement}
           <Footer stateView={this.state.view} divSetView={this.divSetView} iconSetView={this.iconSetView} />
         </div>

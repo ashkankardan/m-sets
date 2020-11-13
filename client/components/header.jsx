@@ -13,7 +13,7 @@ export default class Header extends React.Component {
         <header className="header">
           <h1>M|S</h1>
           <i className="fas fa-home icon-red"></i>
-          <AccountSelect getAccount={this.props.getAccount}/>
+          <AccountSelect logInView={this.props.logInView} getAccount={this.props.getAccount}/>
         </header>
       );
     } else if (this.props.stateView === 'search') {
@@ -21,7 +21,7 @@ export default class Header extends React.Component {
         <header className="header">
           <h1>M|S</h1>
           <i className="fas fa-search icon-red"></i>
-          <AccountSelect getAccount={this.props.getAccount}/>
+          <AccountSelect logInView={this.props.logInView} getAccount={this.props.getAccount}/>
         </header>
       );
     } else if (this.props.stateView === 'modules') {
@@ -29,15 +29,23 @@ export default class Header extends React.Component {
         <header className="header">
           <h1>M|S</h1>
           <i className="fas fa-sitemap icon-red"></i>
-          <AccountSelect getAccount={this.props.getAccount}/>
+          <AccountSelect logInView={this.props.logInView} getAccount={this.props.getAccount}/>
         </header>
       );
     } else if (this.props.stateView === 'artist') {
       return (
         <header className="header">
           <h1>M|S</h1>
-          <i className="fas fa-search icon-red"></i>
-          <AccountSelect getAccount={this.props.getAccount}/>
+          <i className="fas fa-user icon-red"></i>
+          <AccountSelect logInView={this.props.logInView} getAccount={this.props.getAccount}/>
+        </header>
+      );
+    } else if (this.props.stateView === 'login') {
+      return (
+        <header className="header">
+          <h1>M|S</h1>
+          <i className="fas fa-user icon-red"></i>
+          <AccountSelect logInView={this.props.logInView} getAccount={this.props.getAccount} />
         </header>
       );
     }

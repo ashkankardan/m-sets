@@ -116,6 +116,29 @@ app.get('/api/accounts/:account', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/artists/:artistName', (req, res, next) => {
+  const artistName = req.params.artistName;
+  const artistNameLowercase = artistName.toLowerCase();
+
+  const sql = `
+    select "artistId", "artistName", "image"
+    from "artists"
+    where "artistName" = $1
+  `;
+
+  const values = [artistNameLowercase];
+
+  db.query(sql, values)
+    .then(result => {
+      if (result) {
+        res.status(200).json(result.rows);
+      } else {
+        next(new ClientError(`cannot find artistName ${artistNameLowercase}`, 404));
+      }
+    })
+    .catch(err => next(err));
+});
+
 // ----------
 
 app.get('/api/health-check', (req, res, next) => {

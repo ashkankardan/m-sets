@@ -87,6 +87,8 @@ export default class Footer extends React.Component {
           </div>
         </footer>
       );
+    } else if (this.props.stateView === 'login') {
+      return null;
     }
   }
 }
