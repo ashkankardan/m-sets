@@ -67,6 +67,28 @@ export default class Footer extends React.Component {
           </div>
         </footer>
       );
+    } else if (this.props.stateView === 'artist') {
+      return (
+        <footer className="footer">
+          <div className="red" onClick={() => {
+            this.props.divSetView('home');
+          }}>
+            <i className="fas fa-home icon-black"></i>
+          </div>
+          <div className="gray" onClick={() => {
+            this.props.divSetView('search');
+          }}>
+            <i className="fas fa-search icon-black"></i>
+          </div>
+          <div className="gray" onClick={() => {
+            this.props.divSetView('modules');
+          }}>
+            <i className="fas fa-sitemap icon-black"></i>
+          </div>
+        </footer>
+      );
+    } else if (this.props.stateView === 'login') {
+      return null;
     }
   }
 }

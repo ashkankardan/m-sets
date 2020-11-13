@@ -159,8 +159,8 @@ ALTER TABLE ONLY public.sets ALTER COLUMN "setId" SET DEFAULT nextval('public."s
 --
 
 COPY public.artists ("artistId", "artistName", image) FROM stdin;
-1	Ashkan	./images/avatars/ashkan.png
 2	burns	./images/avatars/burns.png
+1	ashkan	./images/avatars/ashkan.png
 \.
 
 
@@ -170,6 +170,7 @@ COPY public.artists ("artistId", "artistName", image) FROM stdin;
 
 COPY public.sets ("setId", "setName", "artistId", osc1, "waveForm1", frq1, lp1, hp1, delay1, reverb1, distortion1, gain1, osc2, "waveForm2", frq2, lp2, hp2, delay2, reverb2, distortion2, gain2, output) FROM stdin;
 1	Mynoise	1	t	sine	440	t	t	t	t	t	10	t	sine	440	f	f	f	f	f	5	5
+2	burnsnoise	2	f	sine	180	f	f	f	f	f	0	f	sine	180	f	f	f	f	f	0	0
 \.
 
 
@@ -184,7 +185,7 @@ SELECT pg_catalog.setval('public."artists_artistId_seq"', 2, true);
 -- Name: sets_setId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."sets_setId_seq"', 1, true);
+SELECT pg_catalog.setval('public."sets_setId_seq"', 2, true);
 
 
 --
