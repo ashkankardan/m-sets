@@ -12,6 +12,48 @@ h1,
 p {
   color: white;
 }
+@media (orientation: portrait) {
+  .artist-select {
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    background-color: gray;
+    font-size: 20px;
+    padding-left: 20%;
+  }
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
+  }
+  .login {
+    margin-bottom: 100px;
+  }
+}
+@media (orientation: landscape) {
+  .artist-select {
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    background-color: gray;
+    font-size: 20px;
+    padding-left: 30%;
+  }
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .login {
+    margin-bottom: 30px;
+  }
+}
 .container {
   text-align: center;
   max-width: 1250px;
@@ -61,27 +103,19 @@ p {
   font-size: 26px;
 }
 .button {
-  width: 150px;
-  height: 30px;
+  width: 80%;
+  height: 50px;
   border: none;
   border-radius: 5px;
   margin-top: 40px;
   color: white;
   background-color: #830000;
+  font-size: 20px;
 }
 .search-result {
   margin-top: 10px;
   height: 150px;
   overflow-y: scroll;
-}
-.artist-select {
-  width: 150px;
-  height: 30px;
-  border-radius: 5px;
-  border: none;
-  font-weight: bold;
-  background-color: gray;
-  text-align: center;
 }
 .icon-red {
   color: #830000;
@@ -203,12 +237,6 @@ p {
   display: flex;
   overflow-x: scroll;
 }
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 100px;
-}
 .browse {
   padding-left: 5px;
   padding-right: 5px;
@@ -236,7 +264,7 @@ p {
 }
 
 .account-avatar {
-  width: 15%;
+  width: 50px;
 }
 
 .search-result {

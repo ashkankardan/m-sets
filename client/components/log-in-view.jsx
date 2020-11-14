@@ -23,14 +23,16 @@ export default class LogInView extends React.Component {
         this.props.setUser(artistObject);
       })
       .catch(err => console.error(err));
-    this.props.setView('artist');
+
+    this.props.divSetView('account');
   }
 
   render() {
     return (
       <div className="flex-column">
+        <h1 className="large-font login">Login</h1>
         <select value={this.state.selectedArtistName} name="artists" className="artist-select" onChange={this.handleChange}>
-          <option value="" disabled label="Account"></option>
+          <option value="" disabled label="Account Name"></option>
           <option value="ashkan" label="Ashkan"></option>
           <option value="burns" label="burns"></option>
         </select>
@@ -39,5 +41,3 @@ export default class LogInView extends React.Component {
     );
   }
 }
-
-// need to fix select disabled issue
