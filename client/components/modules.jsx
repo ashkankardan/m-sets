@@ -1,4 +1,5 @@
 import React from 'react';
+import SaveSet from './save-set';
 import * as Tone from 'tone';
 
 export default class Modules extends React.Component {
@@ -6,7 +7,8 @@ export default class Modules extends React.Component {
     super(props);
     this.state = {
       artistName: '',
-      setName: '',
+      setName: 'newSetName',
+      artistId: 0,
       osc1: false,
       waveForm1: 'sine',
       frq1: 180,
@@ -25,7 +27,8 @@ export default class Modules extends React.Component {
       reverb2: false,
       distortion2: false,
       gain2: 0,
-      output: 0
+      output: 0,
+      playPause: false
     };
 
     this.osc1 = new Tone.Oscillator();
@@ -46,7 +49,6 @@ export default class Modules extends React.Component {
     this.delayFn1 = this.delayFn1.bind(this);
     this.lp1 = this.lp1.bind(this);
     this.hp1 = this.hp1.bind(this);
-    this.handleChange = this.handleChange.bind(this);
 
     this.osc2 = new Tone.Oscillator();
     this.gainNode2 = new Tone.Gain(0);
@@ -65,6 +67,46 @@ export default class Modules extends React.Component {
     this.delayFn2 = this.delayFn2.bind(this);
     this.lp2 = this.lp2.bind(this);
     this.hp2 = this.hp2.bind(this);
+
+    this.newSet = this.newSet.bind(this);
+    this.openSet = this.openSet.bind(this);
+    this.playPause = this.playPause.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+  }
+
+  newSet() {
+    // console.log(this.props)
+  }
+
+  openSet() {
+    this.props.divSetView('home');
+  }
+
+  playPause() {
+    if (this.state.playPause) {
+      this.osc1.stop();
+      this.osc2.stop();
+      this.setState({
+        osc1: false,
+        osc2: false,
+        playPause: false
+      });
+    } else {
+      this.osc1.start();
+      this.osc2.start();
+      this.setState({
+        osc1: true,
+        osc2: true,
+        playPause: true
+      });
+    }
+  }
+
+  handleNameChange(evt) {
+    this.setState({
+      setName: evt.target.value
+    });
   }
 
   handleChange(evt) {
@@ -276,6 +318,10 @@ export default class Modules extends React.Component {
   }
 
   initialize() {
+    this.setState({
+      artistName: this.props.currentUser.artistName,
+      artistId: this.props.currentUser.artistId
+    });
     this.osc1.type = this.state.waveForm1;
     this.osc1.frequency.value = this.state.frq1;
     this.lowpass1.set({
@@ -316,13 +362,43 @@ export default class Modules extends React.Component {
   }
 
   componentDidMount() {
+
     this.initialize();
   }
 
   render() {
     return (
       <div className="msets-container">
+
         <div className="modules">
+
+          <div className="data-control">
+            <div className="row">
+
+              <input className="setName" type="text" name="setName" onChange={ this.handleNameChange } value={ this.state.setName } />
+
+              <button disabled className="artistName">{`By: ${this.state.artistName}`}</button>
+            </div>
+
+            <div className="divider"></div>
+
+            <div className="row">
+
+              <button onClick={ this.newSet } className="newSet">New Set</button>
+              <button onClick={ this.openSet } className="openSet">Open Set</button>
+
+            </div>
+
+            <div className="divider"></div>
+
+            <div className="row">
+              <button onClick={ this.playPause } className={`playPause ${this.state.playPause}`}>Play/Pause</button>
+              <SaveSet setData={this.state}/>
+            </div>
+          </div>
+
+          <div className="divider"></div>
+
           <div className="rack1">
             <div className="row">
               <button disabled className="osc">OSC1</button>

@@ -10,15 +10,20 @@ import ArtistView from './artist-view';
 import LogInView from './log-in-view';
 import Search from './search';
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: null,
       isLoading: true,
-      view: 'home',
-      currentUser: null
+      view: 'modules',
+      currentUser: {
+        artistId: 1,
+        artistName: 'ashkan',
+        image: './images/avatars/ashkan.png',
+        setId: 1,
+        setName: 'Mynoise'
+      }
 
     };
     this.divSetView = this.divSetView.bind(this);
@@ -77,7 +82,7 @@ export default class App extends React.Component {
     let viewElement;
 
     if (this.state.view === 'modules') {
-      viewElement = <div><Modules currentUser={this.state.currentUser}/></div>;
+      viewElement = <div><Modules divSetView={this.divSetView} currentUser={this.state.currentUser}/></div>;
     } else if (this.state.view === 'home') {
       viewElement = <div><SetsList /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
