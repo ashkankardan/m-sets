@@ -119,8 +119,7 @@ app.get('/api/accounts/:account', (req, res, next) => {
     .catch(err => next(err));
 });
 
-
-app.get("/api/artists/:artistName", (req, res, next) => {
+app.get('/api/artists/:artistName', (req, res, next) => {
   const artistName = req.params.artistName;
   const artistNameLowercase = artistName.toLowerCase();
   const sql = `
@@ -130,7 +129,7 @@ app.get("/api/artists/:artistName", (req, res, next) => {
   `;
   const values = [artistNameLowercase];
   db.query(sql, values)
-    .then((result) => {
+    .then(result => {
       if (result) {
         res.status(200).json(result.rows);
       } else {
@@ -139,12 +138,11 @@ app.get("/api/artists/:artistName", (req, res, next) => {
         );
       }
     })
-    .catch((err) => next(err));
+    .catch(err => next(err));
 });
 
-
 app.post('/api/saveset', (req, res, next) => {
-  const artistName = req.body.artistName;
+  const artistId = req.body.artistId;
   const setName = req.body.setName;
   const osc1 = req.body.osc1;
   const waveForm1 = req.body.waveForm1;
@@ -166,43 +164,21 @@ app.post('/api/saveset', (req, res, next) => {
   const gain2 = req.body.gain2;
   const output = req.body.output;
 
-  const sql = `
-    select "artistId"
-    from "artists"
-    where "artistName" = $1
-  `;
-
-
-  const values = [artistName];
-
-  db.query(sql, values)
-    .then(result => {
-      if (!result.rows[0]) {
-        next(new ClientError(`cannot find artistName ${artistName}`, 400));
-      } else {
-        const artistId = result.rows[0];
-
-        const insert = `
+  const insert = `
           insert into "sets" ("setName", "artistId", "osc1", "waveForm1", "frq1", "lp1", "hp1", "delay1", "reverb1", "distortion1", "gain1", "osc2", "waveForm2", "frq2", "lp2", "hp2", "delay2", "reverb2", "distortion2", "gain2", "output")
           values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)
           returning "setId"
         `;
 
-        const values = [setName, artistId, osc1, waveForm1, frq1, lp1, hp1, delay1, reverb1, distortion1, gain1, osc2, waveForm2, frq2, lp2, hp2, delay2, reverb2, distortion2, gain2, output];
+  const values = [setName, artistId, osc1, waveForm1, frq1, lp1, hp1, delay1, reverb1, distortion1, gain1, osc2, waveForm2, frq2, lp2, hp2, delay2, reverb2, distortion2, gain2, output];
 
-        db.query(insert, values)
-          .then(result => {
-            res.status(201).json(result.rows[0]);
-          })
-          .catch(err => next(err));
-
-      }
+  db.query(insert, values)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
     })
     .catch(err => next(err));
+
 });
-
-
-
 
 // ----------
 

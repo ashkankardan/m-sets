@@ -158,7 +158,7 @@ p {
 }
 
 .osc,
-.osc1onoff {
+.osc1onoff, .playPause, .saveSet, .setName, .artistName, .newSet, .openSet {
   width: 50%;
   height: 40px;
   font-size: 1.2rem;
@@ -208,6 +208,10 @@ p {
   margin: 10px 0;
 }
 
+.saveSet, .setName, .artistName, .newSet, .openSet {
+  background-color: gray;
+}
+
 .false {
   background-color: gray;
 }
@@ -226,7 +230,7 @@ p {
 .lp:hover,
 .hp:hover,
 .gain:hover,
-.output:hover {
+.output:hover, .playPause, .saveSet, .newSet, .openSet {
   cursor: pointer;
 }
 
@@ -288,4 +292,10 @@ p {
   font-weight: bold;
   margin-top: 15px;
   margin-left: 10px;
+}
+
+
+
+.setName {
+  padding-left: 20%;
 }

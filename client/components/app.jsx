@@ -82,7 +82,7 @@ export default class App extends React.Component {
     let viewElement;
 
     if (this.state.view === 'modules') {
-      viewElement = <div><Modules currentUser={this.state.currentUser}/></div>;
+      viewElement = <div><Modules divSetView={this.divSetView} currentUser={this.state.currentUser}/></div>;
     } else if (this.state.view === 'home') {
       viewElement = <div><SetsList /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
