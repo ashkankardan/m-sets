@@ -17,7 +17,7 @@ export default class AccountSelect extends React.Component {
 
   render() {
     return (
-      <img src="./images/avatars/ashkan.png" className="account-avatar" onClick={this.props.logInView}/>
+      <img src={this.props.avatar} className="account-avatar" onClick={this.props.logInView}/>
     );
   }
 }

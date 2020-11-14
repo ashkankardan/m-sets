@@ -6,7 +6,7 @@ import Modules from './modules';
 import SetsList from './sets-list';
 import ArtistsList from './artists-list';
 
-import ArtistView from './artist-view';
+import AccountView from './account-view';
 import LogInView from './log-in-view';
 import Search from './search';
 
@@ -16,7 +16,7 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: 'modules',
+      view: 'home',
       currentUser: {
         artistId: 1,
         artistName: 'ashkan',
@@ -63,7 +63,7 @@ export default class App extends React.Component {
       .then(sets => {
         this.setState({
           sets: sets,
-          view: 'artist'
+          view: 'account'
         });
       });
   }
@@ -86,19 +86,18 @@ export default class App extends React.Component {
     } else if (this.state.view === 'home') {
       viewElement = <div><SetsList /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
-
       viewElement = <div><Search /></div>;
-    } else if (this.state.view === 'artist') {
-      viewElement = <div><ArtistView account={this.state.currentUser}/></div>;
+    } else if (this.state.view === 'account') {
+      viewElement = <div><AccountView account={this.state.currentUser}/></div>;
     } else if (this.state.view === 'login') {
-      viewElement = <div><LogInView setView={this.divSetView} setUser={this.setUser} /></div>;
+      viewElement = <div><LogInView currentUser={this.state.currentUser} divSetView={this.divSetView} setUser={this.setUser} /></div>;
     }
 
     return (
       this.state.isLoading
         ? <h1>Testing connections...</h1>
         : <div className="container">
-          <Header stateView={this.state.view} logInView={this.logInView} getAccount={this.getAccount}/>
+          <Header avatar={this.state.currentUser.image} stateView={this.state.view} logInView={this.logInView} getAccount={this.getAccount}/>
           {viewElement}
           <Footer stateView={this.state.view} divSetView={this.divSetView} iconSetView={this.iconSetView} />
         </div>

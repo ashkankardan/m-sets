@@ -1,12 +1,13 @@
 import React from 'react';
 import AccountItem from './account-item';
 
-export default class ArtistView extends React.Component {
+export default class AccountView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sets: []
     };
+    this.getAccount = this.getAccount.bind(this);
   }
 
   getAccount(event) {
@@ -16,13 +17,13 @@ export default class ArtistView extends React.Component {
       .then(sets => {
         this.setState({
           sets: sets,
-          view: 'artist'
+          view: 'account'
         });
       });
   }
 
   render() {
-    const array = this.props.account;
+    const array = [this.props.account];
     return (
       <div className="browse">
         <h1 className="large-font">My Sets</h1>
