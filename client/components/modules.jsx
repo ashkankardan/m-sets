@@ -6,9 +6,9 @@ export default class Modules extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artistName: '',
+      artistName: this.props.currentUser.artistName,
       setName: 'newSetName',
-      artistId: 0,
+      artistId: this.props.currentUser.artistId,
       osc1: false,
       waveForm1: 'sine',
       frq1: 180,
@@ -76,7 +76,31 @@ export default class Modules extends React.Component {
   }
 
   newSet() {
-    // console.log(this.props)
+    this.setState({
+      artistName: this.props.currentUser.artistName,
+      setName: 'newSetName',
+      artistId: this.props.currentUser.artistId,
+      osc1: false,
+      waveForm1: 'sine',
+      frq1: 180,
+      lp1: false,
+      hp1: false,
+      delay1: false,
+      reverb1: false,
+      distortion1: false,
+      gain1: 0,
+      osc2: false,
+      waveForm2: 'sine',
+      frq2: 180,
+      lp2: false,
+      hp2: false,
+      delay2: false,
+      reverb2: false,
+      distortion2: false,
+      gain2: 0,
+      output: 0,
+      playPause: false
+    });
   }
 
   openSet() {
