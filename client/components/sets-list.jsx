@@ -8,6 +8,7 @@ export default class SetsList extends React.Component {
       setArray: []
     };
     this.getSets = this.getSets.bind(this);
+    this.updateSetId = this.updateSetId.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +25,10 @@ export default class SetsList extends React.Component {
       });
   }
 
+  updateSetId(setId) {
+    this.props.getSelectedSetData(setId);
+  }
+
   render() {
     const array = this.state.setArray;
     return (
@@ -32,7 +37,7 @@ export default class SetsList extends React.Component {
         {
           array.map(item => {
             return (
-              <SetItem className="flex" key={item.setId} set={item}/>
+              <SetItem updateSetId={this.updateSetId} className="flex" key={item.setId} set={item}/>
             );
           })
         }
