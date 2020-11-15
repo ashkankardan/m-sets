@@ -299,3 +299,7 @@ p {
 .setName {
   padding-left: 20%;
 }
+
+.saveBtnDiv {
+  display: inline;
+}

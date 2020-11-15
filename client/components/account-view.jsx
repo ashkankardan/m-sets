@@ -8,6 +8,7 @@ export default class AccountView extends React.Component {
       sets: []
     };
     this.getAccount = this.getAccount.bind(this);
+    this.updateSetId = this.updateSetId.bind(this);
   }
 
   getAccount(event) {
@@ -17,9 +18,14 @@ export default class AccountView extends React.Component {
       .then(sets => {
         this.setState({
           sets: sets,
-          view: 'account'
+          view: 'account',
+          setId: null
         });
       });
+  }
+
+  updateSetId(setId) {
+    this.props.getSelectedSetData(setId);
   }
 
   render() {
@@ -30,7 +36,7 @@ export default class AccountView extends React.Component {
         {
           array.map(item => {
             return (
-              <AccountItem className="flex" key={item.setId} set={item}/>
+              <AccountItem updateSetId={this.updateSetId} className="flex" key={item.setId} set={item}/>
             );
           })
         }
@@ -38,10 +44,3 @@ export default class AccountView extends React.Component {
     );
   }
 }
-
-// console log received object
-// create variable "artistId" assign artistId inside the current object
-// console log artistId
-// send get to '/api/artist/:artistId'
-// after receiving, res json
-// this setstate sets: received sets

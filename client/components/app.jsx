@@ -16,21 +16,22 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: 'home',
+      view: 'account',
       currentUser: {
         artistId: 1,
         artistName: 'ashkan',
         image: './images/avatars/ashkan.png',
         setId: 1,
         setName: 'Mynoise'
-      }
+      },
+      selectedSet: null
 
     };
     this.divSetView = this.divSetView.bind(this);
-    this.iconSetView = this.iconSetView.bind(this);
     this.getAccount = this.getAccount.bind(this);
     this.logInView = this.logInView.bind(this);
     this.setUser = this.setUser.bind(this);
+    this.getSelectedSetData = this.getSelectedSetData.bind(this);
   }
 
   divSetView(view) {
@@ -39,8 +40,18 @@ export default class App extends React.Component {
     });
   }
 
-  iconSetView() {
+  getSelectedSetData(setId) {
 
+    fetch(`./api/setdata/${setId}`)
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          selectedSet: result,
+          view: 'modules'
+        });
+
+      })
+      .catch(err => console.error(err));
   }
 
   logInView() {
@@ -82,13 +93,13 @@ export default class App extends React.Component {
     let viewElement;
 
     if (this.state.view === 'modules') {
-      viewElement = <div><Modules divSetView={this.divSetView} currentUser={this.state.currentUser}/></div>;
+      viewElement = <div><Modules selectedSet={this.state.selectedSet} divSetView={this.divSetView} currentUser={this.state.currentUser}/></div>;
     } else if (this.state.view === 'home') {
-      viewElement = <div><SetsList /><ArtistsList /></div>;
+      viewElement = <div><SetsList getSelectedSetData={this.getSelectedSetData} /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
       viewElement = <div><Search /></div>;
     } else if (this.state.view === 'account') {
-      viewElement = <div><AccountView account={this.state.currentUser}/></div>;
+      viewElement = <div><AccountView getSelectedSetData={this.getSelectedSetData} account={this.state.currentUser}/></div>;
     } else if (this.state.view === 'login') {
       viewElement = <div><LogInView currentUser={this.state.currentUser} divSetView={this.divSetView} setUser={this.setUser} /></div>;
     }

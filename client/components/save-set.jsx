@@ -23,14 +23,26 @@ export default class SaveSet extends React.Component {
       .then(res => res.json())
       .then(result => {
       // console.log(result)
+        this.props.disableSave();
       })
       .catch(err => console.error(err));
 
   }
 
   render() {
+    let saveViewEl;
+
+    if (this.props.saveState) {
+      saveViewEl = <button onClick={ this.saveSet } className="saveSet">Save</button>;
+    } else {
+      saveViewEl = <button disabled onClick={ this.saveSet } className="saveSet">Save</button>;
+    }
+
     return (
-      <button onClick={ this.saveSet } className="saveSet">Save</button>
+      <div className="saveBtnDiv">
+        {saveViewEl}
+      </div>
+
     );
   }
 

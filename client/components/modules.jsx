@@ -28,7 +28,8 @@ export default class Modules extends React.Component {
       distortion2: false,
       gain2: 0,
       output: 0,
-      playPause: false
+      playPause: false,
+      saveBtn: true
     };
 
     this.osc1 = new Tone.Oscillator();
@@ -69,6 +70,7 @@ export default class Modules extends React.Component {
     this.hp2 = this.hp2.bind(this);
 
     this.newSet = this.newSet.bind(this);
+    this.disableSave = this.disableSave.bind(this);
     this.openSet = this.openSet.bind(this);
     this.playPause = this.playPause.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -99,12 +101,19 @@ export default class Modules extends React.Component {
       distortion2: false,
       gain2: 0,
       output: 0,
-      playPause: false
+      playPause: false,
+      saveBtn: true
     });
   }
 
   openSet() {
     this.props.divSetView('home');
+  }
+
+  disableSave() {
+    this.setState({
+      saveBtn: false
+    });
   }
 
   playPause() {
@@ -383,6 +392,37 @@ export default class Modules extends React.Component {
     this.delay2.toDestination();
     this.delay2.connect(this.toneMeter);
     this.osc2.volume.value = this.state.output;
+
+    if (this.props.selectedSet) {
+      this.setState({
+        artistName: this.props.selectedSet.artistName,
+        setName: this.props.selectedSet.setName,
+        artistId: this.props.selectedSet.artistId,
+        osc1: this.props.selectedSet.osc1,
+        waveForm1: this.props.selectedSet.waveForm1,
+        frq1: this.props.selectedSet.frq1,
+        lp1: this.props.selectedSet.lp1,
+        hp1: this.props.selectedSet.hp1,
+        delay1: this.props.selectedSet.delay1,
+        reverb1: this.props.selectedSet.reverb1,
+        distortion1: this.props.selectedSet.distortion1,
+        gain1: this.props.selectedSet.gain1,
+        osc2: this.props.selectedSet.osc2,
+        waveForm2: this.props.selectedSet.waveForm2,
+        frq2: this.props.selectedSet.frq2,
+        lp2: this.props.selectedSet.lp2,
+        hp2: this.props.selectedSet.hp2,
+        delay2: this.props.selectedSet.delay2,
+        reverb2: this.props.selectedSet.reverb2,
+        distortion2: this.props.selectedSet.distortion2,
+        gain2: this.props.selectedSet.gain2,
+        output: this.props.selectedSet.output
+      });
+
+      if (this.props.selectedSet.artistName !== this.props.currentUser.artistName) {
+        this.disableSave();
+      }
+    }
   }
 
   componentDidMount() {
@@ -417,7 +457,7 @@ export default class Modules extends React.Component {
 
             <div className="row">
               <button onClick={ this.playPause } className={`playPause ${this.state.playPause}`}>Play/Pause</button>
-              <SaveSet setData={this.state}/>
+              <SaveSet saveState={this.state.saveBtn} disableSave={this.disableSave} setData={this.state}/>
             </div>
           </div>
 
