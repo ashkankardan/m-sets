@@ -16,7 +16,7 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: 'home',
+      view: 'search',
       currentUser: [
         {
           artistId: 1,
@@ -102,7 +102,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'home') {
       viewElement = <div><SetsList getSelectedSetData={this.getSelectedSetData} /><ArtistsList /></div>;
     } else if (this.state.view === 'search') {
-      viewElement = <div><Search /></div>;
+      viewElement = <div><Search getSelectedSetData={this.getSelectedSetData} /></div>;
     } else if (this.state.view === 'account') {
       viewElement = <div><AccountView getSelectedSetData={this.getSelectedSetData} account={this.state.currentUser}/></div>;
     } else if (this.state.view === 'login') {
