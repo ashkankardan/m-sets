@@ -7,29 +7,31 @@ export default class AccountView extends React.Component {
     this.state = {
       sets: []
     };
-    this.getAccount = this.getAccount.bind(this);
+    // this.getAccount = this.getAccount.bind(this);
     this.updateSetId = this.updateSetId.bind(this);
   }
 
-  getAccount(event) {
-    const account = event.target.value;
-    fetch(`/api/accounts/${account}`)
-      .then(res => res.json())
-      .then(sets => {
-        this.setState({
-          sets: sets,
-          view: 'account',
-          setId: null
-        });
-      });
-  }
+  // getAccount(event) {
+
+  //   const account = event.target.value;
+  //   console.log(`account`, account)
+  //   fetch(`/api/accounts/${account}`)
+  //     .then(res => res.json())
+  //     .then(sets => {
+  //       this.setState({
+  //         sets: sets,
+  //         view: 'account',
+  //         setId: null
+  //       });
+  //     });
+  // }
 
   updateSetId(setId) {
     this.props.getSelectedSetData(setId);
   }
 
   render() {
-    const array = [this.props.account];
+    const array = this.props.account;
     return (
       <div className="browse">
         <h1 className="large-font">My Sets</h1>

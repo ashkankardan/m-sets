@@ -19,8 +19,7 @@ export default class LogInView extends React.Component {
     fetch(`/api/artists/${selectedArtistName}`)
       .then(res => res.json())
       .then(result => {
-        const artistObject = result[0];
-        this.props.setUser(artistObject);
+        this.props.setUser(result);
       })
       .catch(err => console.error(err));
 
