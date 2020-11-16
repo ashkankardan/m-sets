@@ -419,7 +419,7 @@ export default class Modules extends React.Component {
         output: this.props.selectedSet.output
       });
 
-      if (this.props.selectedSet.artistName !== this.props.currentUser.artistName) {
+      if (this.props.selectedSet.artistName !== this.props.currentUser[0].artistName) {
         this.disableSave();
       }
     }

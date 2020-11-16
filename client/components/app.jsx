@@ -16,19 +16,21 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: 'account',
-      currentUser: {
-        artistId: 1,
-        artistName: 'ashkan',
-        image: './images/avatars/ashkan.png',
-        setId: 1,
-        setName: 'Mynoise'
-      },
+      view: 'home',
+      currentUser: [
+        {
+          artistId: 1,
+          artistName: 'ashkan',
+          image: './images/avatars/ashkan.png',
+          setId: 1,
+          setName: 'Mynoise'
+        }
+      ],
       selectedSet: null
 
     };
     this.divSetView = this.divSetView.bind(this);
-    this.getAccount = this.getAccount.bind(this);
+    // this.getAccount = this.getAccount.bind(this);
     this.logInView = this.logInView.bind(this);
     this.setUser = this.setUser.bind(this);
     this.getSelectedSetData = this.getSelectedSetData.bind(this);
@@ -67,17 +69,20 @@ export default class App extends React.Component {
   }
 
   // need to double check
-  getAccount(event) {
-    const account = event.target.value;
-    fetch(`/api/accounts/${account}`)
-      .then(res => res.json())
-      .then(sets => {
-        this.setState({
-          sets: sets,
-          view: 'account'
-        });
-      });
-  }
+  // getAccount(event) {
+  //   const account = event.target.value;
+  //   console.log(account)
+  //   fetch(`/api/accounts/${account}`)
+  //     .then(res => res.json())
+  //     .then(sets => {
+  //       console.log(this.state.sets)
+  //       this.setState({
+  //         sets: sets,
+  //         // view: 'account'
+  //       });
+  //       console.log(this.state.sets)
+  //     });
+  // }
 
   // --------
   componentDidMount() {
@@ -108,7 +113,7 @@ export default class App extends React.Component {
       this.state.isLoading
         ? <h1>Testing connections...</h1>
         : <div className="container">
-          <Header avatar={this.state.currentUser.image} stateView={this.state.view} logInView={this.logInView} getAccount={this.getAccount}/>
+          <Header avatar={this.state.currentUser[0].image} stateView={this.state.view} logInView={this.logInView} getAccount={this.getAccount}/>
           {viewElement}
           <Footer stateView={this.state.view} divSetView={this.divSetView} iconSetView={this.iconSetView} />
         </div>
