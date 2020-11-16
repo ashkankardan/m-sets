@@ -6,9 +6,9 @@ export default class Modules extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artistName: this.props.currentUser.artistName,
+      artistName: this.props.currentUser[0].artistName,
       setName: 'newSetName',
-      artistId: this.props.currentUser.artistId,
+      artistId: this.props.currentUser[0].artistId,
       osc1: false,
       waveForm1: 'sine',
       frq1: 180,
@@ -79,9 +79,9 @@ export default class Modules extends React.Component {
 
   newSet() {
     this.setState({
-      artistName: this.props.currentUser.artistName,
+      artistName: this.props.currentUser[0].artistName,
       setName: 'newSetName',
-      artistId: this.props.currentUser.artistId,
+      artistId: this.props.currentUser[0].artistId,
       osc1: false,
       waveForm1: 'sine',
       frq1: 180,
@@ -352,8 +352,8 @@ export default class Modules extends React.Component {
 
   initialize() {
     this.setState({
-      artistName: this.props.currentUser.artistName,
-      artistId: this.props.currentUser.artistId
+      artistName: this.props.currentUser[0].artistName,
+      artistId: this.props.currentUser[0].artistId
     });
     this.osc1.type = this.state.waveForm1;
     this.osc1.frequency.value = this.state.frq1;
