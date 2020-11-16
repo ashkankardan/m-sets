@@ -107,7 +107,7 @@ export default class Modules extends React.Component {
   }
 
   openSet() {
-    this.props.divSetView('home');
+    this.props.divSetView('search');
   }
 
   disableSave() {

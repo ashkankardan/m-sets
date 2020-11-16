@@ -303,3 +303,7 @@ p {
 .saveBtnDiv {
   display: inline;
 }
+
+.browse-item {
+  display: inline-block;
+}
