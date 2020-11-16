@@ -77,7 +77,7 @@ export default class Search extends React.Component {
     let resultViewEl;
 
     if (this.state.resultView === 'setResult') {
-      resultViewEl = <SearchSetResultItem result={ this.state.result } />;
+      resultViewEl = <SearchSetResultItem getSelectedSetData={this.props.getSelectedSetData} result={ this.state.result } />;
     } else if (this.state.resultView === 'artistResult') {
       resultViewEl = <SearchArtistResultItem result={ this.state.result } />;
     } else {
@@ -85,7 +85,6 @@ export default class Search extends React.Component {
     }
 
     return (
-
       <div>
         <h1 className="large-font">By Set</h1>
         <div className="search-bar">

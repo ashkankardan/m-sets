@@ -1,30 +1,32 @@
 import React from 'react';
+import ResultItem from './set-srch-item';
 
-function ResultItem(props) {
-  return (
-    <div className="srch-res-container">
-      <div className="srch-res-row">
-        <img className="srch-avatar" src={props.resItem.image} alt={props.resItem.setName} />
-        <div className="srch-res-info">
-          <p className="set-name">{props.resItem.setName}</p>
-          <p className="artist-name">{props.resItem.artistName}</p>
-        </div>
+export default class SearchSetResultItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sets: []
+    };
+    this.updateSetId = this.updateSetId.bind(this);
+  }
+
+  updateSetId(setId) {
+    this.props.getSelectedSetData(setId);
+  }
+
+  render() {
+
+    return (
+
+      <div className={ 'search-result' }>
+        {
+          this.props.result.map(resItem => {
+            return <ResultItem updateSetId={this.updateSetId} key={ resItem.setId } resItem={ resItem } />;
+          })
+        }
+
       </div>
-    </div>
-  );
-}
 
-export default function SearchSetResultItem(props) {
-  return (
-
-    <div className={ 'search-result' }>
-      {
-        props.result.map(resItem => {
-          return <ResultItem key={ resItem.setId } resItem={ resItem } />;
-        })
-      }
-
-    </div>
-
-  );
+    );
+  }
 }
