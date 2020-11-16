@@ -37,7 +37,7 @@ export default class SetsList extends React.Component {
         {
           array.map(item => {
             return (
-              <SetItem updateSetId={this.updateSetId} className="flex" key={item.setId} set={item}/>
+              <SetItem updateSetId={this.updateSetId} className="browse-container flex" key={item.setId} set={item}/>
             );
           })
         }
