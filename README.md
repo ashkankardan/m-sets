@@ -1,6 +1,6 @@
 # m-sets | "M|Sets"
 
-a full-stack mobile-responsive Node.js and React music application for musicians to generate sound, modify waveforms and add effects, and save they’re session values to the database.
+a full-stack mobile-responsive Node.js and React music application for musicians to generate sound, modify waveforms and add effects, and save their session values to the database.
 
 ## Technologies Used
 
