@@ -24,20 +24,20 @@ a full-stack mobile-responsive Node.js and React music application for musicians
 - User can add and modify effects - Front-end.
 - User can save session values - Back-end.
 - User can save session values - Front-end.
-- User can choose their account - Back-end
-- User can choose their account - Front-end.
-- User can view their saved sets - Back-end
-- User can view their saved sets - Front-end
-- User can update the values of their saved sets - Back-end
-- User can update the values of their saved sets - Front-end
-- User can browse and view other artists - Back-end
-- User can browse and view other artists - Front-end
-- User can browse and view other artists' sets - Back-end
-- User can browse and view other artists' sets - Front-end
-- User can search for an artist - Back-end
-- User can search for an artist - Front-end
-- User can search for a set - Back-end
-- User can search for a set - Front-end
+- Users can select their account - Back-end.
+- Users can select their account - Front-end.
+- Users can view their saved sets - Back-end.
+- Users can view their saved sets - Front-end.
+- Users can update the values of their saved sets - Back-end.
+- Users can update the values of their saved sets - Front-end.
+- User can browse and view other artists - Back-end.
+- User can browse and view other artists - Front-end.
+- User can browse and view other artists' sets - Back-end.
+- User can browse and view other artists' sets - Front-end.
+- User can search for an artist - Back-end.
+- User can search for an artist - Front-end.
+- User can search for a set - Back-end.
+- User can search for a set - Front-end.
 
 ## Preview
 
